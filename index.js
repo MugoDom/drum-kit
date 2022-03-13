@@ -8,6 +8,7 @@ for(var i=0; i<numberOfButtons; i++){
         var buttonInnerHTML = this.innerHTML;
 
         makeSound(buttonInnerHTML);
+        animateButton(buttonInnerHTML);
 
     });
 }
@@ -15,6 +16,8 @@ for(var i=0; i<numberOfButtons; i++){
 //Detects keyboard press
 document.addEventListener("keydown", function(event){
     makeSound(event.key);
+
+    animateButton(event.key);
 });
 
 function makeSound(key){
@@ -60,3 +63,12 @@ function makeSound(key){
 
 }
 
+function animateButton(currentkey){
+    var activeButton = document.querySelector("." + currentkey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function (){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
